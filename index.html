@@ -92,9 +92,12 @@
         <h2 class="section__title">Experience</h2>
         <div class="timeline">
           <article class="timeline__item">
-            <header>
-              <h3>Software Engineer Specialist &ndash; AI Training</h3>
-              <p class="timeline__meta">DataAnnotation &bull; Remote &bull; Jun 2025 &ndash; Present</p>
+            <header class="timeline__header">
+              <img class="timeline__logo" src="https://logo.clearbit.com/dataannotation.tech" alt="DataAnnotation logo">
+              <div>
+                <h3>Software Engineer Specialist &ndash; AI Training</h3>
+                <p class="timeline__meta">DataAnnotation &bull; Remote &bull; Jun 2025 &ndash; Present</p>
+              </div>
             </header>
             <ul>
               <li>Design rigorous Python coding challenges that probe algorithmic reasoning, complexity analysis, and data structure state tracking for AI evaluation.</li>
@@ -103,9 +106,12 @@
             </ul>
           </article>
           <article class="timeline__item">
-            <header>
-              <h3>Cloud Software Engineer</h3>
-              <p class="timeline__meta">Intel Corporation &bull; Santa Clara, CA &bull; Apr 2022 &ndash; Apr 2023</p>
+            <header class="timeline__header">
+              <img class="timeline__logo" src="https://logo.clearbit.com/intel.com" alt="Intel logo">
+              <div>
+                <h3>Cloud Software Engineer</h3>
+                <p class="timeline__meta">Intel Corporation &bull; Santa Clara, CA &bull; Apr 2022 &ndash; Apr 2023</p>
+              </div>
             </header>
             <ul>
               <li>Built Jenkins automation pipelines and GitHub templates that launched CI/CD for the Open Edge Platform and doubled team velocity.</li>
@@ -114,9 +120,12 @@
             </ul>
           </article>
           <article class="timeline__item">
-            <header>
-              <h3>Software QA Automation Engineer</h3>
-              <p class="timeline__meta">Ananki &bull; Menlo Park, CA &bull; Jan 2020 &ndash; Apr 2022</p>
+            <header class="timeline__header">
+              <img class="timeline__logo" src="https://logo.clearbit.com/ananki.net" alt="Ananki logo">
+              <div>
+                <h3>Software QA Automation Engineer</h3>
+                <p class="timeline__meta">Ananki &bull; Menlo Park, CA &bull; Jan 2020 &ndash; Apr 2022</p>
+              </div>
             </header>
             <ul>
               <li>Created Python-driven uptime, latency, and throughput monitors for Aether, raising platform availability to 99% and slashing RTT latency.</li>
@@ -125,9 +134,12 @@
             </ul>
           </article>
           <article class="timeline__item">
-            <header>
-              <h3>QA Automation Intern</h3>
-              <p class="timeline__meta">Open Networking Foundation &bull; Menlo Park, CA &bull; Jun 2017 &ndash; May 2018, Jun 2019 &ndash; Sep 2019</p>
+            <header class="timeline__header">
+              <img class="timeline__logo" src="https://logo.clearbit.com/opennetworking.org" alt="Open Networking Foundation logo">
+              <div>
+                <h3>QA Automation Intern</h3>
+                <p class="timeline__meta">Open Networking Foundation &bull; Menlo Park, CA &bull; Jun 2017 &ndash; May 2018, Jun 2019 &ndash; Sep 2019</p>
+              </div>
             </header>
             <ul>
               <li>Developed functional, performance, and scale system tests in Python and Groovy to validate the ONOS SDN controller.</li>
@@ -144,21 +156,24 @@
         <h2 class="section__title">Education</h2>
         <div class="education">
           <article>
-            <h3>M.S. Engineering Science (Computer Science)</h3>
-            <p>University of the Pacific &bull; Stockton, CA &bull; GPA: 3.9/4.0 &bull; Dec 2019</p>
+            <div class="education__header">
+              <img class="education__logo" src="https://logo.clearbit.com/pacific.edu" alt="University of the Pacific logo">
+              <div>
+                <h3>M.S. Engineering Science (Computer Science)</h3>
+                <p>University of the Pacific &bull; Stockton, CA &bull; GPA: 3.9/4.0 &bull; Dec 2019</p>
+              </div>
+            </div>
           </article>
           <article>
-            <h3>B.S. Computer Science</h3>
-            <p>University of the Pacific &bull; Stockton, CA &bull; GPA: 3.4/4.0 &bull; May 2018</p>
+            <div class="education__header">
+              <img class="education__logo" src="https://logo.clearbit.com/pacific.edu" alt="University of the Pacific logo">
+              <div>
+                <h3>B.S. Computer Science</h3>
+                <p>University of the Pacific &bull; Stockton, CA &bull; GPA: 3.4/4.0 &bull; May 2018</p>
+              </div>
+            </div>
           </article>
         </div>
-      </div>
-    </section>
-
-    <section class="section section--alt" id="references">
-      <div class="container">
-        <h2 class="section__title">References</h2>
-        <p>Available upon request.</p>
       </div>
     </section>
   </main>
@@ -171,6 +186,33 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const sections = document.querySelectorAll('.section');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px'
+      });
+
+      sections.forEach((section) => {
+        if (section.getBoundingClientRect().top <= window.innerHeight * 0.9) {
+          section.classList.add('is-visible');
+        } else {
+          observer.observe(section);
+        }
+      });
+    } else {
+      sections.forEach((section) => section.classList.add('is-visible'));
+    }
+
+    document.body.classList.add('js');
   </script>
 </body>
 </html>

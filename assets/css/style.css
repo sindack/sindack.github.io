@@ -113,10 +113,17 @@ a:hover {
   box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
 }
 
-.button:hover {
+.button:hover,
+.button:focus {
   background: var(--accent-hover);
   transform: translateY(-2px);
   box-shadow: 0 14px 28px rgba(37, 99, 235, 0.3);
+  color: white;
+}
+
+.button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.75);
+  outline-offset: 2px;
 }
 
 .button--ghost {
@@ -132,6 +139,17 @@ a:hover {
 
 .section {
   padding: 4rem 0;
+}
+
+body.js .section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+}
+
+body.js .section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .section--alt {
@@ -226,8 +244,22 @@ a:hover {
   box-shadow: var(--shadow);
 }
 
-.timeline__item header {
+.timeline__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 1.5rem;
+}
+
+.timeline__logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: contain;
+  background: white;
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
 }
 
 .timeline__item h3 {
@@ -264,6 +296,23 @@ a:hover {
   padding: 1.5rem;
   backdrop-filter: blur(8px);
   box-shadow: var(--shadow);
+}
+
+.education__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.education__logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  object-fit: contain;
+  background: white;
+  padding: 0.45rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.12);
 }
 
 .education h3 {
